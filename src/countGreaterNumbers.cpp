@@ -5,9 +5,9 @@ E.g.: Input: A[3] = { { 10, "09-10-2003", "First" }, { 20, "19-10-2004", "Second
 date = "19-10-2004"
 Output: 1 (only one transaction : { 30, "03-03-2005", "Third" })
 
-INPUTS: Two bank statements (array of transactions).
+INPUTS: One bank statement (array of transactions) and date.
 
-OUTPUT: Combined statement ordered by transaction date.
+OUTPUT: Return the number of transactions in that statement after a given date.
 
 ERROR CASES: Return NULL for invalid inputs.
 
