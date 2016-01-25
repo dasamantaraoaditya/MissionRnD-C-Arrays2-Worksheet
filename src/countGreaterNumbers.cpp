@@ -19,7 +19,61 @@ struct transaction {
 	char date[11];
 	char description[20];
 };
-
 int countGreaterNumbers(struct transaction *Arr, int len, char *date) {
-	return -1;
+	if (Arr == nullptr || len < 0 || date == nullptr)
+		return '\0';
+	int i, j, great_count = 0, n_dd = 0, n_mm = 0, n_yy = 0;
+	for (j = 0; date[j] != '-'; j++)
+	{
+		n_dd *= 10;
+		n_dd += date[j] - '0';
+	}
+	for (++j; date[j] != '-'; j++)
+	{
+		n_mm *= 10;
+		n_mm += date[j] - '0';
+	}
+	for (++j; date[j] != '\0'; j++)
+	{
+		n_yy *= 10;
+		n_yy += date[j] - '0';
+	}
+	for (i = 0; i<len; i++)
+	{
+		int dd = 0, mm = 0, yy = 0;
+		for (j = 0; Arr[i].date[j] != '-'; j++)
+		{
+			dd *= 10;
+			dd += Arr[i].date[j] - '0';
+		}
+		for (++j; Arr[i].date[j] != '-'; j++)
+		{
+			mm *= 10;
+			mm += Arr[i].date[j] - '0';
+		}
+		for (++j; Arr[i].date[j] != '\0'; j++)
+		{
+			yy *= 10;
+			yy += Arr[i].date[j] - '0';
+		}
+		if (n_yy<yy)
+		{
+			great_count++;
+		}
+		else if (n_yy == yy)
+		{
+			if (n_mm<mm)
+			{
+				great_count++;
+			}
+			else if (n_mm == mm)
+			{
+				if (n_dd<dd)
+					great_count++;
+			}
+		}
+		//printf("%d%d%d",dd,mm,yy);
+	}
+
+	return great_count;
 }

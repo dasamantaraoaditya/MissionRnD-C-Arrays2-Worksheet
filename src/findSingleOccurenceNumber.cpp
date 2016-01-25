@@ -12,7 +12,26 @@ ERROR CASES: Return -1 for invalid inputs.
 
 NOTES:
 */
-
+#define NULL 0
 int findSingleOccurenceNumber(int *A, int len) {
+	if (A == NULL|| len < 0)
+		return -1;
+	int i, j, unique[100][2] = { { 0 }, { 0 } }, k = 0, flag;
+	for (i = 0; i < len; i++){
+		for (j = 0; j <k; j++){
+			flag = 1;
+			if (unique[j][0] == A[i])
+			{
+				unique[j][1]++;
+				flag = 0;
+				break;
+			}
+		}
+		if (flag)
+			unique[k++][0] = A[i];
+	}
+	for (i = 0; i < k; i++)
+		if (unique[i][1] == 0)
+			return unique[i][0];
 	return -1;
 }
